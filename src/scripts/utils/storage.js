@@ -1,3 +1,16 @@
-import ext from "./ext";
+export function getLocalRules() {
+  try {
+    return JSON.parse(localStorage['rules']);
+  } catch (e) {
+    throw new Error(e.message);
+    return [];
+  }
+}
 
-module.exports = (ext.storage.sync ? ext.storage.sync : ext.storage.local);
+export function setLocalRules(str = '') {
+  try {
+    localStorage['rules'] = JSON.stringify(str);
+  } catch (e) {
+    throw new Error(e.message);
+  }
+}
